@@ -8,21 +8,25 @@ controller.get("/", (req, res) => {
 });
 
 controller.get("/:id", (req, res) => {
-    let { id } = req.params;
-
-    if (!/0-9/.test(id)) {
-        res.send("Student ID must be a number");
-    }
-
-    let foundStudent = studentData.students.find((student) => {
-        return student.id === id;
+    try {
+        const { id } = req.params;
+    
+        if (!/[0-9]/.test(id)) {
+            res.send("Student ID must be a number");
+            return;
         }
-    );
-
-    if (foundStudent) {
-        res.json(foundStudent);
-    } else {
-        res.json("Student not found");
+    
+        let foundStudent = studentData.students.find((student) => {
+            return student.id === id;
+        });
+    
+        if (foundStudent) {
+            res.json(foundStudent);
+        } else {
+            res.json("Student not found");
+        }
+    } catch (error) {
+        res.status(500).send("An error has occured");
     }
 });
 
