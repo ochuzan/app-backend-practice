@@ -4,10 +4,22 @@
 // "Oliver", 3 => "Oliver Oliver Oliver"
 
 function repeatNTimesWithSpace(string, n) {
-    return (string + " ").repeat(n);
+    if (!string) {
+        return "";
+    }
+    // if (string.length === 1) {
+    //     return string;
+    // }
+    // return (string + " ").repeat(n);
+
+    const arr = new Array(n).fill(string);
+    return arr.join(" ");
 };
 
 function capitalizeFirstLetter(string) {
+    if (!string) {
+        return "";
+    }
     return string[0].toUpperCase() + string.slice(1);
 };
 

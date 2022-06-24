@@ -4,7 +4,15 @@ const controller = express.Router();
 const studentData = require("../studentData.json");
 
 controller.get("/", (req, res) => {
-    res.json(studentData);
+    let { limit=25 } = req.query;
+
+    limit = Number(limit);
+
+    let studentDataForDelivery = {...studentData};
+
+    studentDataForDelivery.students = studentDataForDelivery.students.slice(0, limit)
+
+    res.json(studentDataForDelivery);
 });
 
 controller.get("/:id", (req, res) => {

@@ -11,7 +11,7 @@ controller.get("/capitalizeName/:name/", (req, res) => {
         res.send(capitalizedName);
 
     } catch (error) {
-        res.send("An error has occurred")
+        res.send("An error has occurred");
     }
 });
 
